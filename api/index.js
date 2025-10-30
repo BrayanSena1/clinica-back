@@ -9,20 +9,18 @@ import empleados from "../src/routes/empleados.routes.js";
 
 const app = express();
 
-// permite tu front en Netlify
 app.use(cors({
   origin: ["https://clinicabrayan.netlify.app", "http://localhost:5173"]
 }));
 app.use(morgan("dev"));
 app.use(express.json());
 
-// conecta a Mongo (cacheado en tu connectDB)
+// Conexión a Atlas (ver punto 2 para que tome la env sin pasar argumento)
 app.use(async (_req, _res, next) => { await connectDB(); next(); });
 
-// ⚠️ OJO: SIN /api aquí
+// ⚠️ SIN /api aquí (Vercel ya le pone /api)
 app.get("/health", (_req, res) => res.json({ ok: true }));
 app.use("/auth", auth);
 app.use("/empleados", empleados);
 
-// exporta la función serverless
 export default serverless(app);
