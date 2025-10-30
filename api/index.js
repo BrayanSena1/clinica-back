@@ -15,10 +15,10 @@ app.use(cors({
 app.use(morgan("dev"));
 app.use(express.json());
 
-// Conexión a Atlas (ver punto 2 para que tome la env sin pasar argumento)
+// Conecta a Mongo (usa la env por defecto)
 app.use(async (_req, _res, next) => { await connectDB(); next(); });
 
-// ⚠️ SIN /api aquí (Vercel ya le pone /api)
+// ⚠️ SIN /api aquí
 app.get("/health", (_req, res) => res.json({ ok: true }));
 app.use("/auth", auth);
 app.use("/empleados", empleados);
