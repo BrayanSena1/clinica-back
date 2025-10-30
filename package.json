@@ -2,7 +2,6 @@
   "name": "app-back",
   "version": "1.0.0",
   "description": "Backend simple (auth + empleados)",
-  "main": "src/server.js",
   "type": "module",
   "scripts": {
     "start": "node src/server.js",
